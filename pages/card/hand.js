@@ -1,7 +1,28 @@
 import Deck from '../../components/Deck/Deck'
+import { getCards } from '../api/card/hand'
 
-export default function () {
+function HandPage(props) {
+	const { deck, hand } = props;
+
+	if (!deck && !hand) {
+		return <p>Loading...</p>
+	}
+
 	return <>
-		<Deck path='card/deck' title='My Hand page' />
+		<Deck path='card/deck' title='Deck' cards={deck} />
+		<Deck path='card/hand' title='Hands' cards={hand} flippable={true} />
 	</>
 }
+
+export async function getServerSideProps(context) {
+	const data = getCards();
+
+	return {
+		props: {
+			deck: data.deck,
+			hand: data.hand,
+		}
+	}
+}
+
+export default HandPage;
