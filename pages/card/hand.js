@@ -1,3 +1,5 @@
+import Head from 'next/head';
+
 import Deck from '../../components/Deck/Deck'
 import { getCards } from '../api/card/hand'
 
@@ -9,6 +11,9 @@ function HandPage(props) {
 	}
 
 	return <>
+		<Head>
+			<title>My Hand</title>
+		</Head>
 		<Deck path='card/deck' title='Deck' cards={deck} />
 		<Deck path='card/hand' title='Hands' cards={hand} flippable={true} />
 	</>
