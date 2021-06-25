@@ -1,8 +1,4 @@
 import classes from "./Deck.module.scss";
-import { getRandomTip } from "../../util/randomTip"
-
-import { useEffect, useState } from "react";
-
 import Card from "../Card/Card";
 
 const createHand = (cards, canBeFlipped = true) => {
