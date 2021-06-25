@@ -19,8 +19,6 @@ function DeckPage(props) {
 }
 
 export async function getServerSideProps(context) {
-	const deck = getDeck()
-
 	return {
 		props: {
 			cards: getDeck(),
