@@ -15,9 +15,9 @@ const books = [
 	},
 ];
 
-const mappingCard = card => ({
-	number: card.slice(0, -1),
-	symbol: card.slice(-1)
+const mappingCard = (card, flipped = false) => ({
+	card,
+	flipped: false,
 });
 
 module.exports = {
@@ -31,6 +31,9 @@ module.exports = {
 			const newHand = new Hand(mainDeck, 2);
 			const mappedHand = newHand.cards.map(mappingCard)
 			return mappedHand
+		},
+		deck: () => {
+			return mainDeck.cards.map(mappingCard);
 		}
 	},
 	Mutation: {

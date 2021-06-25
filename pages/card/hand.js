@@ -1,5 +1,6 @@
 import Head from 'next/head';
-
+import { gql } from "@apollo/client";
+import client from "../../graphql/client";
 import Deck from '../../components/Deck/Deck'
 import { getCards } from '../api/card/hand'
 
@@ -20,14 +21,26 @@ function HandPage(props) {
 }
 
 export async function getServerSideProps(context) {
-	const data = getCards();
+	const request = await client.query({
+		query: gql`
+			query {
+				table {
+					card
+					flipped
+				}
+				hand {
+					card
+					flipped
+				}
+			}
+		`
+	});
 
 	return {
 		props: {
-			deck: data.deck,
-			hand: data.hand,
+			deck: request.data.table,
+			hand: request.data.hand
 		}
 	}
 }
-
 export default HandPage;

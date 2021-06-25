@@ -7,12 +7,13 @@ const typeDefs = gql`
   }
 
 	type Card {
-		number: String
-		symbol: String
+		card: String
+		flipped: Boolean
 	}
 
   type Query {
     books: [Book],
+		deck: [Card],
 		table: [Card],
 		hand: [Card]
   }
